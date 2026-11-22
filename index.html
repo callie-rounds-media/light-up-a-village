@@ -123,7 +123,7 @@
   .gets{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:end}
   .guar{border-radius:28px;padding:48px 44px;background:linear-gradient(150deg,#F2A33A,#8a4a12 55%,#1a0f06);position:relative;overflow:hidden}
   .guar:before{content:"";position:absolute;width:420px;height:420px;right:-140px;top:-160px;border-radius:50%;background:radial-gradient(circle,rgba(255,213,138,.6),transparent 65%);filter:blur(10px)}
-  .big{font-size:clamp(88px,13vw,200px);font-weight:200;letter-spacing:-.06em;line-height:.9;position:relative}
+  .big{font-size:clamp(88px,13vw,200px);font-weight:200;letter-spacing:-.06em;line-height:.9;position:relative;margin-bottom:.24em}
   .guar p{position:relative;font-size:15px;color:rgba(255,255,255,.88);max-width:420px}
   .guar p.fine{font-size:13px;color:rgba(255,255,255,.66);margin-top:14px}
   .list div{display:flex;justify-content:space-between;gap:24px;padding:20px 0;border-top:1px solid var(--faint);font-size:17px}
@@ -281,7 +281,7 @@
       <div class="stop"><i></i><b>Before</b><span>The village at night, living by candlelight</span></div>
       <div class="stop"><i></i><b>Install week</b><span>Locals trained and paid to light every home</span></div>
       <div class="stop"><i></i><b>Record night</b><span>The whole village lights up at once</span></div>
-      <div class="stop"><i></i><b>After</b><span>Homework, safe walks home and a brighter Christmas</span></div>
+      <div class="stop"><i></i><b>After</b><span>Their first Christmas with the lights on</span></div>
     </div>
     <div class="cam r d3"><i></i>Filmed by a professional videographer from day one, with drone coverage of the switch-on</div>
   </div>
@@ -496,7 +496,8 @@ gsap.timeline({scrollTrigger:{trigger:'#switch',start:'top top',end:'+=220%',scr
     return {x:ox+dw*0.508,y:top+oy+dh*0.028,gy:top+oy+dh*0.078};
   }
   function build(){
-    const H=document.documentElement.scrollHeight,W=innerWidth;
+    svg.style.height='0px';
+    const H=Math.round(document.getElementById('close').getBoundingClientRect().bottom+scrollY),W=innerWidth;
     svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.style.height=H+'px';
     const all=[...document.querySelectorAll('.slide')];
     const slides=all.slice(all.indexOf(document.getElementById('dark')));
