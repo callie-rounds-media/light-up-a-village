@@ -14,6 +14,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;background:var(--ink)}
+  html{overflow-x:hidden;overflow-x:clip}
   body{background:var(--ink);color:var(--white);font-family:"Inter Tight",Helvetica,Arial,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5}
   img{display:block;max-width:100%}
 
@@ -471,6 +472,7 @@ gsap.timeline({scrollTrigger:{trigger:'#tagline',start:'top top',end:'+=170%',sc
 gsap.set('#switch .f2,#switch .f3,#switch .f4',{opacity:0});
 gsap.timeline({scrollTrigger:{trigger:'#switch',start:'top top',end:'+=220%',scrub:1,pin:true,anticipatePin:1}})
   .to('#switch .f2',{opacity:1,duration:.12},.06)
+  .fromTo('#switch .bg img',{objectPosition:phone?'22% 50%':'50% 30%'},{objectPosition:phone?'62% 50%':'50% 30%',duration:.24,ease:'power1.inOut'},.18)
   .to('#switch .f3',{opacity:1,duration:.12},.24)
   .to('#switch .f4',{opacity:1,duration:.03},.44)
   .to('#switch .f4',{opacity:.3,duration:.03},.47)
