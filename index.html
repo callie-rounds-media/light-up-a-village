@@ -406,9 +406,10 @@ document.querySelectorAll('.wsplit').forEach(el=>{
     if(reduced){draw(new Float32Array(N).fill(1),1);return;}
     /* when each home switches on (seconds): a slow start, then a rush */
     for(let i=0;i<N;i++){const u=i/(N-1);t0[i]=1.4+(i<3?i*.7:1.4+Math.pow(u,.55)*4.2);}
-    const start=performance.now(),end=t0[N-1]+1.6;
+    const start=performance.now(),end=t0[N-1]+1.6;let tm=0;
     (function f(now){
-      const t=(now-start)/1000;
+      /* the timer runs on its own, but scrolling through the hero pushes it forward, so every home is lit by halfway through the zoom */
+      tm=Math.max(tm,(now-start)/1000,(window.heroP||0)/.5*end);const t=tm;
       for(let i=0;i<N;i++){const d=t-t0[i];on[i]=d<=0?0:d<.08?.8:d<.16?.25:d<.26?1:d<.34?.7:1;}
       const wash=Math.min(1,Math.max(0,(t-(end-1.6))/1.6));
       draw(on,wash*.85);
@@ -453,7 +454,7 @@ if(typeof gsap!=='undefined'){
 gsap.registerPlugin(ScrollTrigger);
 if(!reduced){
 /* hero: letters fly in from deep space; on scroll the photo zooms past and the title shatters forward */
-gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=140%',scrub:1,pin:true,anticipatePin:1}})
+gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=140%',scrub:1,pin:true,anticipatePin:1,onUpdate:st=>{window.heroP=Math.max(window.heroP||0,st.progress)}}})
   .to('#hero .bg img,#hero .bg canvas',{scale:1.6,yPercent:-6,ease:'none'},0)
   .to('#hero .tag',{opacity:0,y:-40,duration:.25},0)
   .to('#hero h1 .ch',{z:900,opacity:0,rotateX:-50,stagger:{each:.016,from:'random'},ease:'power2.in'},.12)
