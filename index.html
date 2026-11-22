@@ -176,8 +176,8 @@
     #hero .bg img,#hero .bg canvas{object-position:58% 50%}
     #hero .shade{background:linear-gradient(0deg,rgba(5,6,10,.94) 0%,rgba(5,6,10,.45) 55%,rgba(5,6,10,.1) 100%)}
     #hero .inner{align-self:flex-end;margin-bottom:96px}
-    #switch .bg{bottom:auto;height:74%;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}
-    #switch .bg img{object-position:46% 50%}
+    #switch .bg{top:9svh;bottom:auto;height:106vw;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 80%,transparent);mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 80%,transparent)}
+    #switch .bg img{object-position:36% 50%}
     #switch .inner{margin-bottom:40px}
     #record .shade{background:linear-gradient(0deg,rgba(5,6,10,.96) 0%,rgba(5,6,10,.82) 62%,rgba(5,6,10,.35) 100%)}
     #record .inner{align-self:flex-end}
@@ -473,7 +473,6 @@ gsap.timeline({scrollTrigger:{trigger:'#tagline',start:'top top',end:'+=170%',sc
 gsap.set('#switch .f2,#switch .f3,#switch .f4',{opacity:0});
 gsap.timeline({scrollTrigger:{trigger:'#switch',start:'top top',end:'+=220%',scrub:1,pin:true,anticipatePin:1}})
   .to('#switch .f2',{opacity:1,duration:.12},.06)
-  .fromTo('#switch .bg img',{objectPosition:phone?'22% 50%':'50% 30%'},{objectPosition:phone?'62% 50%':'50% 30%',duration:.24,ease:'power1.inOut'},.18)
   .to('#switch .f3',{opacity:1,duration:.12},.24)
   .to('#switch .f4',{opacity:1,duration:.03},.44)
   .to('#switch .f4',{opacity:.3,duration:.03},.47)
